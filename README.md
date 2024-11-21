@@ -14,5 +14,4 @@ Klasa listy dwukierunkowej powinna udostępniać następujące metody:
 - Wyświetl następny element
 - Wyświetl poprzedni element
 - Czyść całą listę
-- Testowanie klasy
-Każda z metod klasy powinna być przetestowana w funkcji main, aby zweryfikować poprawność ich działania.
+- Testowanie klasy, każda z metod klasy powinna być przetestowana w funkcji main, aby zweryfikować poprawność ich działania.
