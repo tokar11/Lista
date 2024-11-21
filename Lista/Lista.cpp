@@ -12,7 +12,6 @@ private:
 	Node* tail;
 
 public: DoublyLinkedList() : head(nullptr), tail(nullptr) {}
-	 
 	  ~DoublyLinkedList() {
 		  clear();
 	  }
@@ -55,6 +54,30 @@ public: DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 			  delete newNode;
 			  return;
 		  }
+		  newNode->next = current->next;
+		  newNode->prev = current;
+		  if (current->next) {
+			  current->next->prev = newNode;
+		  }
+		  else {
+			  tail = newNode;
+		  }
+		  current->next = newNode;
+	  }
+	  void RemoveFromBeg() {
+		  if (!head) {
+			  std::cout << "The list is empyt.\n";
+			  return;
+		  }
+		  Node* temp = head;
+		  head = head->next;
+		  if (head) {
+			  head->prev = nullptr;
+		  }
+		  else {
+			  tail = nullptr;
+		  }
+		  delete temp;
 	  }
 };
 
