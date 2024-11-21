@@ -11,10 +11,11 @@ private:
 	Node* head;
 	Node* tail;
 
-public: DoublyLinkedList() : head(nullptr), tail(nullptr) {}
-	  ~DoublyLinkedList() {
-		  clear();
-	  }
+public: 
+	DoublyLinkedList() : head(nullptr), tail(nullptr) {}
+	~DoublyLinkedList() {
+		clear();
+	}
 	  void AddAtBeg(int value) {
 		  Node* newNode = new Node(value);
 		  if (!tail) {
@@ -79,7 +80,80 @@ public: DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 		  }
 		  delete temp;
 	  }
+	  void RemoveFromEnd() {
+		  if (!tail) {
+			  std::cout << "The list is empty.\n";
+			  return;
+		  }
+		  Node* temp = tail;
+		  tail = tail->prev;
+		  if (tail) {
+			  tail->next = nullptr;
+		  }
+		  else {
+			  head = nullptr;
+		  }
+		  delete temp;
+	  }
+	  void RemoveAtIndex(int index) {
+		  if (index == 0) {
+			  RemoveFromBeg();
+			  return;
+		  }
+		  Node* current = head;
+		  int count = 0;
+		  while (current && count < index) {
+			  current = current->next;
+			  count++;
+		  }
+		  if (!current) {
+			  std::cout << "Index is out of range.\n";
+			  return;
+		  }
+		  if (current->prev) {
+			  current->prev->next = current->next;
+		  }
+		  if (current->next) {
+			  current->next->prev = current->prev;
+		  }
+		  else {
+			  tail = current->prev;
+		  }
+		  delete current;
+	  }
+	  void display() const {
+		  if (!head) {
+			  std::cout << "The list is empty.\n";
+			  return;
+		  }
+		  Node* current = head;
+		  while (current) {
+			  std::cout << current->data << " ";
+			  current = current->next;
+		  }
+		  std::cout << std::endl;
+	  }
+	  void DisplayReverse() const {
+		  if (!tail) {
+			  std::cout << "The list is empty.\n";
+			  return;
+		  }
+		  Node* current = tail;
+		  while (current) {
+			  std::cout << current->data << " ";
+			  current = current->prev;
+		  }
+		  std::cout << std::endl;
+	  }
+	  void Clear() {
+		  while (head) {
+			  RemoveFromBeg();
+		  }
+	  }
 };
+void menu() {
+
+}
 
 int main()
 {
