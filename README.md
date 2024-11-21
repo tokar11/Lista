@@ -1,3 +1,4 @@
+### Cel Projektu
 Celem projektu jest stworzenie implementacji listy dwukierunkowej działającej na stercie w języku C++. Program ma być zrealizowany w formie klasy, która będzie oferowała określone funkcje do manipulacji listą. Działanie klasy zostanie przetestowane w funkcji main.
 
 Klasa listy dwukierunkowej powinna udostępniać następujące metody:
