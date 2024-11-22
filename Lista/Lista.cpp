@@ -13,18 +13,19 @@ private:
 
 public: 
 	DoublyLinkedList() : head(nullptr), tail(nullptr) {}
+	
 	~DoublyLinkedList() {
-		clear();
+		Clear();
 	}
 	  void AddAtBeg(int value) {
 		  Node* newNode = new Node(value);
-		  if (!tail) {
+		  if (!head) {
 			  head = tail = newNode;
 		  }
 		  else {
-			  newNode->prev = tail;
-			  tail->next = newNode;
-			  tail = newNode;
+			  newNode->next = head;
+			  head->prev = newNode;
+			  head = newNode;
 		  }
 	  }
 	  void AddAtEnd(int value) {
@@ -152,12 +153,77 @@ public:
 	  }
 };
 void menu() {
-
+	std::cout << "\nMenu:\n";
+	std::cout << "1. Add item at the beginning of the list.\n";
+	std::cout << "2. Add item at the end of the list.\n";
+	std::cout << "3. Add item at a specified index.\n";
+	std::cout << "4. Delete item from the beginning of the list.\n";
+	std::cout << "5. Delete item from the end of the list.\n";
+	std::cout << "6. Delete item from a specified index.\n";
+	std::cout << "7. Display list\n";
+	std::cout << "8. Display reversed list.\n";
+	std::cout << "9. Clear list.\n";
+	std::cout << "0. Exit.\n";
+	std::cout << "Your choice: ";
 }
 
 int main()
 {
-   
+	DoublyLinkedList list;
+	int choice, value, index;
+
+	do {
+		menu();
+		std::cin >> choice;
+		switch (choice) {
+		case 1:
+			std::cout << "Enter value: ";
+			std::cin >> value;
+			list.AddAtBeg(value);
+			break;
+		case 2:
+			std::cout << "Enter value: ";
+			std::cin >> value;
+			list.AddAtEnd(value);
+			break;
+		case 3:
+			std::cout << "Enter index: ";
+			std::cin >> index;
+			std::cout << "Enter value: ";
+			std::cin >> value;
+			list.AddAtIndex(index, value);
+			break;
+		case 4:
+			list.RemoveFromBeg();
+			break;
+		case 5:
+			list.RemoveFromEnd();
+			break;
+		case 6:
+			std::cout << "Enter index: ";
+			std::cin >> index;
+			list.RemoveAtIndex(index);
+			break;
+		case 7:
+			std::cout << "List status: ";
+			list.display();
+			break;
+		case 8:
+			std::cout << "The list is in reverse order: ";
+			list.DisplayReverse();
+			break;
+		case 9:
+			list.Clear();
+			std::cout << "List has been cleared\n";
+			break;
+		case 0:
+			std::cout << "You left the program!\n";
+			break;
+		default:
+			std::cout << "Incorrect case selection!\n";
+		}
+	} while (choice != 0);
+	return 0;
 }
 
 
